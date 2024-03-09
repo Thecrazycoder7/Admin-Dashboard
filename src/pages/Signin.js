@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { signIn } from '../features/signin-up/signApi';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Signin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [ConfirmPassword, setConfirmPassword] = useState('');
+  const dispatch = useDispatch();
+  const error = useSelector();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signIn({ email, password }));
+  };
+
   return (
     <div className=' flex justify-center items-center h-screen w-screen'>
       <div className='grid place-content-center shadow-md shadow-slate-700 grid-cols-2 h-3/5 w-4/5 overflow-hidden'>
         <div className=' flex justify-center items-center'>
-          <form className='w-4/5 text-center'>
+          <div className='w-4/5 text-center'>
             <h1 className='text-center text-indigo-400 text-2xl font-semibold mb-3'>
               Sign in
             </h1>
-            <div className='my-2 w-full h-3/5 items-center'>
+            <form
+              className='my-2 w-full h-3/5 items-center'
+              onSubmit={handleSubmit}
+            >
+              {/* error msg code */}
+              {error && <p className='text-red-800 text-sm'>{error}</p>}
+
               <label className='p-1 space-y-4'>
                 <input
                   type='email'
                   name='email'
                   placeholder='Email'
                   className='w-4/5  bg-transparent outline-none mx-2'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </label>
@@ -27,6 +48,8 @@ const Signin = () => {
                   name='Password'
                   placeholder='Password'
                   className='w-4/5 bg-transparent outline-none mx-2'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </label>
@@ -38,6 +61,8 @@ const Signin = () => {
                   name='Password'
                   placeholder='Confirm Password'
                   className='w-4/5 bg-transparent outline-none mx-2 space-y-2'
+                  value={ConfirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
               </label>
@@ -58,8 +83,8 @@ const Signin = () => {
               >
                 Sign In
               </Link>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
 
         <div className='flex justify-center items-center bg-indigo-400 '>

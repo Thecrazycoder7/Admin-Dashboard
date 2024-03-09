@@ -1,7 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { signIn } from '../features/signin-up/signApi';
+import { useDispatch } from 'react-redux';
 
 const Signup = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [birth, setBirth] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signIn({ name, email, phone, birth, password }));
+  };
+
   return (
     <>
       <div className=' flex justify-center items-center h-screen w-screen'>
@@ -21,17 +35,22 @@ const Signup = () => {
             </div>
           </div>
           <div className=' flex justify-center items-center'>
-            <form className=' h-4/5 w-3/4 text-center'>
+            <div className=' h-4/5 w-3/4 text-center'>
               <h1 className='text-center text-indigo-400 text-2xl font-semibold'>
                 Create Account
               </h1>
-              <div className='my-2 w-full h-3/5 items-center'>
+              <form
+                className='my-2 w-full h-3/5 items-center'
+                onSubmit={handleSubmit}
+              >
                 <label className='p-1 space-y-3 '>
                   <input
                     type='text'
                     name='name'
                     placeholder='Name'
                     className='w-4/5  bg-transparent outline-none mx-2'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                   />
                 </label>
@@ -42,6 +61,8 @@ const Signup = () => {
                     name='Email'
                     placeholder='Email'
                     className='w-4/5 bg-transparent outline-none mx-2'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </label>
@@ -52,6 +73,8 @@ const Signup = () => {
                     name='Phone Number'
                     placeholder='Phone Number'
                     className='w-4/5 bg-transparent outline-none mx-2'
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                     required
                   />
                 </label>
@@ -63,6 +86,8 @@ const Signup = () => {
                     name='Date of Birth'
                     placeholder='Date of Birth'
                     className='w-4/5 bg-transparent outline-none mx-2'
+                    value={birth}
+                    onChange={(e) => setBirth(e.target.value)}
                   />
                 </label>
                 <br />
@@ -73,6 +98,8 @@ const Signup = () => {
                     name='Password'
                     placeholder='Password'
                     className='w-4/5 bg-transparent outline-none mx-2'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </label>
@@ -84,8 +111,8 @@ const Signup = () => {
                 >
                   Sign Up
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
