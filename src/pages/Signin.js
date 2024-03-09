@@ -8,7 +8,7 @@ const Signin = () => {
   const [password, setPassword] = useState('');
   const [ConfirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
-  const error = useSelector();
+  const error = useSelector((state) => state.auth.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -6,14 +6,15 @@ import {
   signUpStart,
   signUpSuccess,
   signUpFail,
-} from './authSlice';
+} from './signSlice';
+
+const api = '';
 
 export const signIn = (credentials) => async (dispatch) => {
   dispatch(signInStart());
   try {
-    // Perform sign-in API request using Axios
-    const response = await axios.post('your-signin-api-endpoint', credentials);
-    dispatch(signInSuccess(response.data.user)); // Dispatch user data upon successful sign-in
+    const response = await axios.post(api, credentials);
+    dispatch(signInSuccess(response.data.user));
   } catch (error) {
     dispatch(signInFail(error.message));
   }
@@ -22,9 +23,8 @@ export const signIn = (credentials) => async (dispatch) => {
 export const signUp = (userData) => async (dispatch) => {
   dispatch(signUpStart());
   try {
-    // Perform sign-up API request using Axios
-    const response = await axios.post('your-signup-api-endpoint', userData);
-    dispatch(signUpSuccess(response.data.user)); // Dispatch user data upon successful sign-up
+    const response = await axios.post(api, userData);
+    dispatch(signUpSuccess(response.data.user));
   } catch (error) {
     dispatch(signUpFail(error.message));
   }

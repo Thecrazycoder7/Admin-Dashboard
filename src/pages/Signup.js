@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signIn } from '../features/signin-up/signApi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -10,6 +10,7 @@ const Signup = () => {
   const [birth, setBirth] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,6 +44,9 @@ const Signup = () => {
                 className='my-2 w-full h-3/5 items-center'
                 onSubmit={handleSubmit}
               >
+                {/* error msg code */}
+                {error && <p className='text-red-800 text-sm'>{error}</p>}
+
                 <label className='p-1 space-y-3 '>
                   <input
                     type='text'
