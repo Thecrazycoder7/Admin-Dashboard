@@ -1,8 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import AppBar from "@mui/material/AppBar";
-import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
@@ -17,11 +15,13 @@ import MailIcon from "@mui/icons-material/Mail";
 const drawerWidth = 240;
 
 export default function NavBar() {
+  
   return (
     <Box>
       <Drawer
         variant="permanent"
         sx={{
+          backgroundColor: "pink",
           width: drawerWidth,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: {

@@ -79,7 +79,7 @@ const Signin = () => {
               <Link
                 className="m-auto font-semibold border-2 px-4 py-2 bg-indigo-400 rounded-md hover:bg-indigo-600 outline-none  cursor-pointer "
                 type="submit"
-                to="home"
+                to="/home"
               >
                 Sign In
               </Link>

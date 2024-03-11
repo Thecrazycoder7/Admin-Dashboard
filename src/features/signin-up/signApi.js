@@ -6,6 +6,7 @@ import {
   signUpStart,
   signUpSuccess,
   signUpFail,
+  logoutSuccess
 } from './signSlice';
 
 const api = '';
@@ -28,4 +29,8 @@ export const signUp = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch(signUpFail(error.message));
   }
+};
+
+export const logout = () => (dispatch) => {
+  dispatch(logoutSuccess());
 };
